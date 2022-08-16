@@ -1,0 +1,74 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0px;
+}
+
+.product {
+  width: 300px;
+  height: 510px;
+  border: 1px solid #95a0a7;
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+.product-img {
+  text-align: center;
+  margin: 7px;
+}
+.product-img img {
+  width: 286px;
+  height: 286px;
+  border-radius: 8px;
+}
+.product-details {
+  padding-left: 14px;
+}
+.product-name h6 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+}
+.product-price {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  padding: 10px 0px 10px 0;
+}
+.product-seller h5,
+.product-ratings p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+.product-ratings p {
+  padding: 10px 0px 10px 0px;
+}
+.cart-button button{
+  width: 100%;
+  color:  #0E161A;
+  background: #ffe0b3;
+  border: 1px solid #95a0a7;
+  border-radius: 0px 0px 8px 8px;
+  padding: 12px 0 12px 0;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 18px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  transition: 0.6s;
+}
+.cart-button button:hover{
+  background: #f59300;
+  color: #fff;
+}
