@@ -1,0 +1,19 @@
+.calculate-cart{
+    padding-left: 10px;
+    position: sticky;
+    top: 0;
+}
+.calculate-cart h3{
+    text-align: center;
+    margin: 28px 0;
+}
+.calculate-cart h4{
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 25px;
+}
+.calculate-cart h2{
+    font-size: 21px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 25px;
+}

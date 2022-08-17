@@ -1,40 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import Product from '../Product/Product';
-import './Shop.css'
+import React, { useEffect, useState } from "react";
+import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import Cart from "../Cart/Cart";
+import Product from "../Product/Product";
+import "./Shop.css";
 
 const Shop = () => {
-    const [product,setProduct] = useState([]);
-    const [cart, setCart] = useState([]);
+  const [products, setProduct] = useState([]);
+  const [cart, setCart] = useState([]);
 
-    useEffect(()=>{
-        fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
-        .then(res => res.json())
-        .then(data => setProduct(data))
-    })
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
+    )
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  },[]);
 
-    const cartHandler = (product) => {
-        const newCart = [...cart, product];
-        setCart(newCart);
+  useEffect( () =>{
+    const storedCart = getStoredCart();
+    const savedCart = [];
+    for(const id in storedCart){
+        const addedProduct = products.find(product => product.id === id);
+        if(addedProduct){
+            const quantity = storedCart[id];
+            addedProduct.quantity = quantity;
+            savedCart.push(addedProduct);
+        }
     }
-    return (
-            <div className="shop-container">
-                <div className="product-container">
-                    {
-                        product.map(product=> <Product product={product} key={product.key} cartHandler={cartHandler}></Product>)
-                    }
-                </div>
-                <div className="cart-container">
-                    <h3>Order Summary</h3>
-                    <div className="calculate-cart">
-                        <h4>Selected Item: {cart.length}</h4>
-                        <h4>Total Price: </h4>
-                        <h4>Total Shipping charge: </h4>
-                        <h4>Tax: </h4>
-                        <h2>Grand Total: </h2>
-                    </div>
-                </div>
-            </div>
-    );
+    setCart(savedCart);
+}, [products])
+
+  const cartHandler = (product) => {
+    const newCart = [...cart, product];
+    setCart(newCart);
+    addToDb(product.id);
+  };
+  return (
+    <div className="shop-container">
+      <div className="product-container">
+        {products.map((product) => (
+          <Product
+            product={product}
+            key={product.key}
+            cartHandler={cartHandler}
+          ></Product>
+        ))}
+      </div>
+      <div className="cart-container">
+        <Cart cart={cart}></Cart>
+      </div>
+    </div>
+  );
 };
 
 export default Shop;
